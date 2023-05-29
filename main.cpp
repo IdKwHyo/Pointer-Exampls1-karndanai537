@@ -1,61 +1,39 @@
+#define SIZE 1000
 #include <iostream>
+#include <string.h>
 #include <iomanip>
-#define SIZE 10
 
 using namespace std;
 
-int main(){
-  /*int a;
-  double d;
-  cout<<&a<<" size "<<sizeof(a) <<endl;
-  cout<<&d<<" size "<<sizeof(d) <<endl; 
-  */
-  /*
-   
+int main(void){
+  char *pa, *pb, temp;
+  char a[SIZE];
 
-    cout<< x  <<" "<< *p <<endl;
-    cout<< &x <<" "<<  p <<endl;
-    cout<< &p <<endl;
-   int b=9;
-   cout<< x  <<" "<< b << " "<< *p <<endl;
-    x++;
-   cout<< x  <<" "<< b << " "<< *p <<endl;
-    p=&b; *p=2;
-  cout<< x  <<" "<< b << " "<< *p <<endl;	
+    cout<<"Input string : ";
+    cin>>a;
+  int len = strlen(a);
+  pa = &a[0];
   
-   */
-/*Example Array*/
-  /*
-int *ip;
-int a[ ] = {31415, 21828};
-ip = a;
-// alternative:	ip = &a[0];
+  cout<< "Original: ";
+  for (int i = 0; i < len; i++, pa++){
+    cout<<setw(3)<<*pa<<"  ";
+  }
+  cout<<endl;
 
-cout<<a<<endl;			
-cout<<ip<<" "<<*ip<<endl;	
-  
-(*ip)++; 
-cout<<a<<" "<<a[0]<<endl;		
-cout<<ip<<" "<<*ip<<endl; 	
-  
-ip++; 
-cout<<a<<endl;		
-cout<<ip<<" "<<*ip<<endl; 	// print 
-*/
- /*the address is 4324, not 4321
- because the pointer is incremented 						
- by the size of an integer (4 bytes) */
+    pa = &a[0]; pb = &a[len - 1];
+    cout<<"Reverse: ";
+    for (int i = 0; i < len / 2; i++) {
+        temp = *pa;
+        *pa = *pb;
+        *pb = temp;
+        pa++; pb--;
+    }
 
-  char *pa, *pb, i, temp;
-char a[SIZE] ;
-  cout<<"Input string:";
-  cin>>a;
-  
-pa = &a[0]; //pa =a;
-cout<<"Original: ";
-for (i=0; i<SIZE-1; i++ ,pa++){
-   cout<<setw(3)<<*pa ;//<<endl;
-  //cout<<pa<<endl;
-}
-cout<<setw(3)<<*pa<<endl;
+    pa = &a[0];
+    for (int i = 0; i < len; i++,pa++){
+        cout<<setw(3)<<*pa<<"  ";
+    }
+  cout<<endl;
+
+return 0;
 }
